@@ -22,8 +22,6 @@ export class LoginComponent {
     user.email = this.email;
     user.password = this.password;
     this.userservice.login(user).subscribe( response =>{
-      
-        console.log(response);
         if (response.token != null) {
           this.storageService.saveToken(response.token);
           this.router.navigate(['home']);
