@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../models/User';
+import { LocalStorageService } from '../services/local-storage-service';
 import { UserService } from '../services/user-service';
 
 @Component({
@@ -12,7 +14,7 @@ export class LoginComponent {
   email: string = "";
   password: string = "";
 
-  constructor(private userservice: UserService) {
+  constructor(private userservice: UserService, private storageService: LocalStorageService, private router: Router) {
   }
 
   Login() {
@@ -22,8 +24,13 @@ export class LoginComponent {
     this.userservice.login(user).subscribe( response =>{
       
         console.log(response);
-        //TODO: save the token and redirect user to connected page
-      
+        if (response.token != null) {
+          this.storageService.saveToken(response.token);
+          this.router.navigate(['home']);
+        }
+        else {
+          console.log ('no token');
+        }
     });;
   }
 }

@@ -16,6 +16,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { UserService } from './services/user-service';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { LocalStorageService } from './services/local-storage-service';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -25,6 +27,7 @@ import { LoginComponent } from './login/login.component';
     AppComponent,
     CreateAccountComponent,
     LoginComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { LoginComponent } from './login/login.component';
     FormsModule
   ],
   providers: [
-    UserService
+    UserService,
+    LocalStorageService
   ],
   bootstrap: [AppComponent]
 })
