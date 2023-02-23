@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from '../models/User';
 import { UserService } from '../services/user-service';
 
 @Component({
@@ -15,6 +16,14 @@ export class LoginComponent {
   }
 
   Login() {
-    
+    let user = new User();
+    user.email = this.email;
+    user.password = this.password;
+    this.userservice.login(user).subscribe( response =>{
+      
+        console.log(response);
+        //TODO: save the token and redirect user to connected page
+      
+    });;
   }
 }

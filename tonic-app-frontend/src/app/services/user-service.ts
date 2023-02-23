@@ -10,18 +10,27 @@ export class UserService {
   constructor(private httpClient: HttpClient) {
     
    }
-   createUser(user: User) : Observable<User> {
 
-    
-    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
-    let httpOptions={headers: headers};
-    return this.httpClient.post<User>("http://127.0.0.1:8000/api/register", user, httpOptions)
-        .pipe(
-            catchError(this.handleError) 
-        );
+   createUser(user: User) : Observable<User> {
+      const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+      let httpOptions={headers: headers};
+      return this.httpClient.post<User>("http://127.0.0.1:8000/api/register", user, httpOptions)
+          .pipe(
+              catchError(this.handleError) 
+          );
+    }
+
+    login(user: User) : Observable<User> {
+      const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+      let httpOptions={headers: headers};
+      return this.httpClient.post<User>("http://127.0.0.1:8000/api/login", user, httpOptions)
+          .pipe(
+              catchError(this.handleError) 
+      );
     }
 
     private handleError(error: HttpErrorResponse) {
+        alert('an error happened');
         if (error.status === 0) {
           // A client-side or network error occurred. Handle it accordingly.
           console.error('An error occurred:', error.error);
@@ -33,5 +42,5 @@ export class UserService {
         }
         // Return an observable with a user-facing error message.
         return throwError(() => new Error('Something bad happened; please try again later.'));
-      }
+    }
 }
