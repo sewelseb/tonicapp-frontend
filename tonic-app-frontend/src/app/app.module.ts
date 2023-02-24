@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 import { UserService } from './services/user-service';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
@@ -46,6 +47,7 @@ import { FirstConnectionComponent } from './first-connection/first-connection.co
     MatCardModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatRadioModule,
     FormsModule
   ],
   providers: [
