@@ -29,6 +29,6 @@ export class LoginComponent {
         else {
           console.log ('no token');
         }
-    });;
+    });
   }
 }

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,6 +18,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LocalStorageService } from './services/local-storage-service';
 import { HomeComponent } from './home/home.component';
+import { DefaultComponent } from './default/default.component';
+import { ErrorInterceptor } from './services/error-interceptor';
 
 
 
@@ -28,6 +30,7 @@ import { HomeComponent } from './home/home.component';
     CreateAccountComponent,
     LoginComponent,
     HomeComponent,
+    DefaultComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +47,7 @@ import { HomeComponent } from './home/home.component';
     FormsModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     UserService,
     LocalStorageService
   ],

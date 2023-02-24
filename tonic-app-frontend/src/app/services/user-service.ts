@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, retry, retryWhen } from 'rxjs/operators';
 import { User } from '../models/User';
+import { LocalStorageService } from './local-storage-service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
   
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private localStorageService: LocalStorageService, private router: Router) {
     
    }
 
@@ -29,12 +31,22 @@ export class UserService {
       );
     }
 
+    isLoggedInUser() {
+      const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('X-Auth-Token',this.localStorageService.getToken());
+      let httpOptions={headers: headers};
+      return this.httpClient.get<any>("http://localhost:8000/api/protected/isLoggedIn", httpOptions);
+    }
+
     private handleError(error: HttpErrorResponse) {
-        alert('an error happened');
         if (error.status === 0) {
           // A client-side or network error occurred. Handle it accordingly.
           console.error('An error occurred:', error.error);
-        } else {
+        } 
+        else if(error.status === 401) {
+          console.log('unautorised');
+          return new Observable<User>;
+        }
+        else {
           // The backend returned an unsuccessful response code.
           // The response body may contain clues as to what went wrong.
           console.error(
