@@ -15,7 +15,9 @@
             <mat-label>Password</mat-label>
             <input matInput placeholder="Password" value="" type="password" [(ngModel)]="password">
         </mat-form-field>
-       
+        <button mat-raised-button (click)="navigate('create-account')">
+            Register
+        </button>
         <button mat-raised-button color="primary" class="login-button" (click)="Login()">
             Login
         </button>

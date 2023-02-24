@@ -34,4 +34,8 @@ export class CreateAccountComponent {
       }
     });;
   }
+
+  navigate(route: string) {
+    this.router.navigate([route]);
+  }
 }

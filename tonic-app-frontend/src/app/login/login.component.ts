@@ -31,4 +31,8 @@ export class LoginComponent {
         }
     });
   }
+
+  navigate(route: string) {
+    this.router.navigate([route]);
+  }
 }

@@ -18,6 +18,9 @@
         <mat-checkbox class="" [(ngModel)]="legalCheck">
             I agree to share those information with Tonic Teaching ltd and allow them to exploit them to send me their offres.
         </mat-checkbox>
+        <button mat-raised-button (click)="navigate('login')">
+            Login
+        </button>
         <button mat-raised-button color="primary" class="register-button" (click)="createUser()">
             Register
         </button>
