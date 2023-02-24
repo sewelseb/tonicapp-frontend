@@ -3,17 +3,17 @@ import { Router } from '@angular/router';
 import { UserService } from '../services/user-service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-first-connection',
+  templateUrl: './first-connection.component.html',
+  styleUrls: ['./first-connection.component.scss']
 })
-export class HomeComponent {
+export class FirstConnectionComponent {
   constructor(private userService: UserService,private router: Router) {
 
     userService.isLoggedInUser().subscribe( response =>{
-        if(response.isLoggedIn !== true) {
-          this.router.navigate(['login']);
-        }
+      if(response.isLoggedIn !== true) {
+        this.router.navigate(['login']);
+      }
     });
-}
+  }
 }

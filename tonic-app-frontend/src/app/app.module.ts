@@ -20,6 +20,7 @@ import { LocalStorageService } from './services/local-storage-service';
 import { HomeComponent } from './home/home.component';
 import { DefaultComponent } from './default/default.component';
 import { ErrorInterceptor } from './services/error-interceptor';
+import { FirstConnectionComponent } from './first-connection/first-connection.component';
 
 
 
@@ -31,6 +32,7 @@ import { ErrorInterceptor } from './services/error-interceptor';
     LoginComponent,
     HomeComponent,
     DefaultComponent,
+    FirstConnectionComponent,
   ],
   imports: [
     BrowserModule,
