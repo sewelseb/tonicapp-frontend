@@ -18,8 +18,10 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: npm install, build and test
-        run: 
+        run: |
+          working-directory: ./tonic-app-frontend
           npm install
       - name: Angular Full CI
-        run:
+        run: |
+          working-directory: ./tonic-app-frontend
           build --configuration=production
