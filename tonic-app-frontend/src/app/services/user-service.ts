@@ -5,6 +5,7 @@ import { catchError, retry, retryWhen } from 'rxjs/operators';
 import { User } from '../models/User';
 import { LocalStorageService } from './local-storage-service';
 import { Router } from '@angular/router';
+import { environement } from 'src/environements/environement'; 
 
 @Injectable()
 export class UserService {
@@ -16,7 +17,7 @@ export class UserService {
    createUser(user: User) : Observable<User> {
       const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
       let httpOptions={headers: headers};
-      return this.httpClient.post<User>("http://127.0.0.1:8000/api/register", user, httpOptions)
+      return this.httpClient.post<User>(environement.apiUrl+"/api/register", user, httpOptions)
           .pipe(
               catchError(this.handleError) 
           );
@@ -25,7 +26,7 @@ export class UserService {
     login(user: User) : Observable<User> {
       const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
       let httpOptions={headers: headers};
-      return this.httpClient.post<User>("http://127.0.0.1:8000/api/login", user, httpOptions)
+      return this.httpClient.post<User>(environement.apiUrl+"/api/login", user, httpOptions)
           .pipe(
               catchError(this.handleError) 
       );
@@ -34,7 +35,7 @@ export class UserService {
     isLoggedInUser() {
       const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('X-Auth-Token',this.localStorageService.getToken());
       let httpOptions={headers: headers};
-      return this.httpClient.get<any>("http://localhost:8000/api/protected/isLoggedIn", httpOptions);
+      return this.httpClient.get<any>(environement.apiUrl+"/api/protected/isLoggedIn", httpOptions);
     }
 
     private handleError(error: HttpErrorResponse) {
