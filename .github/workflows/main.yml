@@ -20,8 +20,5 @@ jobs:
       - name: npm install, build and test
         run: |
           npm install
-        working-directory: ./tonic-app-frontend
-      - name: Angular Full CI
-        run: |
           build --configuration=production
         working-directory: ./tonic-app-frontend
