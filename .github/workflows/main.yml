@@ -12,4 +12,4 @@ jobs:
           npm install
       - name: Angular Full CI
         run:
-          ng build --configuration=productio
+          build --configuration=production
