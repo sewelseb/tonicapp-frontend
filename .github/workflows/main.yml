@@ -8,6 +8,8 @@ jobs:
       - run: echo "Install dependencies."
       - run: ng
       - name: npm install, build and test
-        run: |
+        run: 
           npm install
+      - name: Angular Full CI
+        run:
           ng build --configuration=productio
