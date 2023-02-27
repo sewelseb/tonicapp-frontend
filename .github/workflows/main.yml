@@ -6,6 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Install dependencies."
+      - run: cd ./tonic-app-frontend/
       - run: ls
       - name: npm install, build and test
         run: 
