@@ -6,7 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Install dependencies."
-      - run: ng
       - name: npm install, build and test
         run: 
           npm install
