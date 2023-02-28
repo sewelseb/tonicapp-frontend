@@ -15,5 +15,11 @@ export class HomeComponent {
           this.router.navigate(['login']);
         }
     });
-}
+
+    userService.isfirstConnectionConfigurationDone().subscribe(response => {
+      if(response.isFirstConfigurationDone !== true) {
+        this.router.navigate(['first-connection']);
+      }
+    });
+  }
 }

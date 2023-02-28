@@ -11,9 +11,9 @@ import { UserService } from '../services/user-service';
 })
 export class FirstConnectionComponent {
   public firstConfiguration : FirstConfigurationDTO = new FirstConfigurationDTO();
+  legalCheck: boolean = false;
 
   constructor(private userService: UserService,private router: Router) {
-    
 
     userService.isLoggedInUser().subscribe( response =>{
       if(response.isLoggedIn !== true) {
@@ -23,8 +23,14 @@ export class FirstConnectionComponent {
   }
 
   save() {
+    if (!this.legalCheck)
+    {
+      alert("Please agree with the conditions");
+      return;  
+    }
+    
     this.userService.firstConnectionConfiguration(this.firstConfiguration).subscribe( response =>{
-      console.log(response);
+      this.router.navigate(['home']);
     });;
   }
 }
