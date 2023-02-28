@@ -6,6 +6,7 @@ import { User } from '../models/User';
 import { LocalStorageService } from './local-storage-service';
 import { Router } from '@angular/router';
 import { environement } from 'src/environements/environement'; 
+import { FirstConfigurationDTO } from '../models/FirstConfigurationDTO';
 
 @Injectable()
 export class UserService {
@@ -36,6 +37,15 @@ export class UserService {
       const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('X-Auth-Token',this.localStorageService.getToken());
       let httpOptions={headers: headers};
       return this.httpClient.get<any>(environement.apiUrl+"/api/protected/isLoggedIn", httpOptions);
+    }
+
+    firstConnectionConfiguration(firstConfigurationDTO : FirstConfigurationDTO) {
+      const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('X-Auth-Token',this.localStorageService.getToken());
+      let httpOptions={headers: headers};
+      return this.httpClient.post<any>(environement.apiUrl+"/api/protected/first-configuration", firstConfigurationDTO, httpOptions)
+          .pipe(
+              catchError(this.handleError) 
+          );
     }
 
     private handleError(error: HttpErrorResponse) {

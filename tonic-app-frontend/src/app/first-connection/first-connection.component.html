@@ -8,17 +8,17 @@
         <H2>Welcome</H2>
         <mat-form-field class="form-field">
             <mat-label>Who was your Tonic teacher?</mat-label>
-            <input matInput placeholder="who was your teacher?" value="" >
+            <input matInput placeholder="who was your teacher?" value="" [(ngModel)]="firstConfiguration.teacher">
         </mat-form-field>
         <mat-form-field class="form-field">
             <mat-label>What was the subject of the course?</mat-label>
-            <input matInput placeholder="What was the subject of the course?" value="" >
+            <input matInput placeholder="What was the subject of the course?" value="" [(ngModel)]="firstConfiguration.courseSubject">
         </mat-form-field>
         <br>
 
         <mat-label>Do you want to get informed by email of new courses that will be availlable?</mat-label>
         <br/>
-        <mat-radio-group aria-label="Select an option">
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="firstConfiguration.isRecievingCommercialEmails">
             <mat-radio-button value="1">Yes</mat-radio-button>
             <mat-radio-button value="0">No</mat-radio-button>
         </mat-radio-group>
@@ -27,8 +27,8 @@
         <mat-checkbox class="" >
             I agree to share those information with Tonic Teaching ltd and allow them to exploit them to send me their offres.
         </mat-checkbox>
-        <button mat-raised-button color="primary" class="register-button" >
-            Register
+        <button mat-raised-button color="primary" class="register-button" (click)="save()">
+            Save
         </button>
     </div>
 </mat-card>

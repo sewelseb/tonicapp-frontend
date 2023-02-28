@@ -32,7 +32,7 @@ export class CreateAccountComponent {
       {
         this.router.navigate(['login']);
       }
-    });;
+    });
   }
 
   navigate(route: string) {
