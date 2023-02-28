@@ -18,6 +18,17 @@ export class LoginComponent {
   }
 
   Login() {
+    if (this.email == "")
+    {
+      alert("Please add a valid email");
+      return;  
+    }
+    if (this.password == "")
+    {
+      alert("Please add a password");
+      return;  
+    }
+
     let user = new User();
     user.email = this.email;
     user.password = this.password;

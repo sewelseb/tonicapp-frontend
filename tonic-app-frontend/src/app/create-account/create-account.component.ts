@@ -18,6 +18,16 @@ export class CreateAccountComponent {
   }
 
   createUser() {
+    if (this.email == "")
+    {
+      alert("Please add a valid email");
+      return;  
+    }
+    if (this.password == "")
+    {
+      alert("Please add a password");
+      return;  
+    }
     if (!this.legalCheck)
     {
       alert("Please agree with the conditions");
