@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/User';
+import { LocalStorageService } from '../services/local-storage-service';
 import { UserService } from '../services/user-service';
 
 @Component({
@@ -14,7 +15,7 @@ export class CreateAccountComponent {
   password: string = "";
   legalCheck: boolean = false;
 
-  constructor(private userservice: UserService, private router: Router) {
+  constructor(private userservice: UserService, private storageService: LocalStorageService,private router: Router) {
   }
 
   createUser() {
@@ -38,9 +39,12 @@ export class CreateAccountComponent {
     user.email = this.email;
     user.password = this.password;
     this.userservice.createUser(user).subscribe( response =>{
-      if(response.email == user.email)
-      {
-        this.router.navigate(['login']);
+      if (response.token != null) {
+        this.storageService.saveToken(response.token);
+        this.router.navigate(['home']);
+      }
+      else {
+        console.log ('no token');
       }
     });
   }
